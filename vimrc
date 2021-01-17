@@ -14,6 +14,7 @@ set tabstop=4
 set t_Co=256
 set backspace=indent,eol,start
 set expandtab
+set noesckeys
 
 " Change tabstop and shiftwidth for specific formats
 autocmd Filetype html set shiftwidth=2
