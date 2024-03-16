@@ -121,3 +121,8 @@ bindkey '^K' autosuggest-accept
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+eval "$(rbenv init - zsh)"
+
