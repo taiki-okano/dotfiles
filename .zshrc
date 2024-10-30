@@ -126,3 +126,11 @@ bindkey '^K' autosuggest-accept
 # the following to ~/.zshrc:
 eval "$(rbenv init - zsh)"
 
+# Auto completion
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
+export QSYS_ROOTDIR="/home/taiki/Applications/intelFPGA/quartus/sopc_builder/bin"
+
+# etc
+alias open='xdg-open'
