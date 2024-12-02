@@ -134,3 +134,9 @@ export QSYS_ROOTDIR="/home/taiki/Applications/intelFPGA/quartus/sopc_builder/bin
 
 # etc
 alias open='xdg-open'
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
