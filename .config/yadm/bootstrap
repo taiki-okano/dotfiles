@@ -1,29 +1,49 @@
-#!/bin/sh
+#!/bin/bash
 
 # Clone TPM (tmux plugin manager)
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.tmux.conf
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	tmux source ~/.tmux.conf
+fi
 
 # Install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+if ! command -v fzf &> /dev/null; then
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+fi
 
 # Install Ripgrep and bat
-curl -sS https://webi.sh/rg | sh
-curl -sS https://webi.sh/bat | sh
-source ~/.config/envman/PATH.env
+if ! command -v rg &> /dev/null; then
+	curl -sS https://webi.sh/rg | sh
+	[ -f "$HOME/.config/envman/PATH.env" ] && source ~/.config/envman/PATH.env
+fi
+if ! command -v bat &> /dev/null; then
+	curl -sS https://webi.sh/bat | sh
+	[ -f "$HOME/.config/envman/PATH.env" ] && source ~/.config/envman/PATH.env
+fi
 
-# Install Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install external plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+# Install Oh-My-Zsh with plugins
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+if [ ! -d "${ZSH_CUSTOM}" ]; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]; then
+    git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
+fi
 
 # Install Vim-Plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 # Install pyenv
-curl https://pyenv.run | bash
+if ! command -v pyenv &> /dev/null; then
+	curl https://pyenv.run | bash
+fi
