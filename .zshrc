@@ -9,7 +9,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="refined"
+# ZSH_THEME="refined"
+ZSH_THEME="cloud"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -91,7 +92,8 @@ export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
 
-source $ZSH/oh-my-zsh.sh
+# This was moved to the end of the file
+# source $ZSH/oh-my-zsh.sh
 
 # Autosuggestion keybindings
 bindkey '^K' autosuggest-accept
@@ -122,21 +124,22 @@ bindkey '^K' autosuggest-accept
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Load rbenv automatically by appending
-# the following to ~/.zshrc:
-eval "$(rbenv init - zsh)"
-
 # Auto completion
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
-export QSYS_ROOTDIR="/home/taiki/Applications/intelFPGA/quartus/sopc_builder/bin"
-
-# etc
-alias open='xdg-open'
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+eval "$(rbenv init - zsh)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# Additional settings specific to each machine
+if [ -e "$HOME/.zshrc_additional" ]; then
+	source "$HOME/.zshrc_additional"
+fi
+
+source $ZSH/oh-my-zsh.sh
