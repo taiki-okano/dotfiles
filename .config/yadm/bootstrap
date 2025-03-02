@@ -47,3 +47,10 @@ fi
 if ! command -v pyenv &> /dev/null; then
 	curl https://pyenv.run | bash
 fi
+
+# Install rbenv
+if ! comman -v rbenv &> /dev/null; then
+	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+	~/.rbenv/bin/rbenv init
+fi
+
