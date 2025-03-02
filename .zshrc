@@ -10,7 +10,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="refined"
-ZSH_THEME="cloud"
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  ZSH_THEME="cloud"
+else
+  ZSH_THEME="refined"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,8 +97,7 @@ export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
 
-# This was moved to the end of the file
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Autosuggestion keybindings
 bindkey '^K' autosuggest-accept
@@ -106,11 +110,11 @@ bindkey '^K' autosuggest-accept
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -141,5 +145,3 @@ eval "$(pyenv init -)"
 if [ -e "$HOME/.zshrc_additional" ]; then
 	source "$HOME/.zshrc_additional"
 fi
-
-source $ZSH/oh-my-zsh.sh
