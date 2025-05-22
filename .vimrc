@@ -25,6 +25,7 @@ nnoremap <Space>h :nohlsearch<CR>
 " source for other completion plugins, like Deoplete.
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 call plug#begin()
 
@@ -34,8 +35,11 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf'
 
 call plug#end()
 
@@ -43,5 +47,11 @@ call plug#end()
 set background=dark
 colorscheme hybrid
 
-" Python settings (for now)
-let b:ale_fixers = {'python': ['black', 'isort']}
+" ALE Setting
+let g:ale_linters = {
+			\ 'cpp': ['clangd']
+			\ }
+
+let g:ale_fixers = {
+			\ 'python': ['black', 'isort'],
+			\ }
