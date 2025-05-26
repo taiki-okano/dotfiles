@@ -7,12 +7,13 @@ set wildmenu
 set smartindent
 set shiftwidth=4
 set tabstop=4
-set mouse=a
+set mouse+=a
 set backspace=indent,eol,start
 filetype on
 filetype plugin indent on
 
 nnoremap <Space>h :nohlsearch<CR>
+nnoremap <Space>n :NERDTreeToggle<CR>
 
 "------------------
 " ALE Configuration
@@ -29,7 +30,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 
 call plug#begin()
 
-Plug 'bling/vim-bufferline'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -37,6 +38,10 @@ Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -55,3 +60,9 @@ let g:ale_linters = {
 let g:ale_fixers = {
 			\ 'python': ['black', 'isort'],
 			\ }
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'wombat'
+let g:airline#extensions#tabline#buffer_nr_show = 1
