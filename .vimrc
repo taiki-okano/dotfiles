@@ -59,6 +59,7 @@ let g:ale_linters = {
 			\ }
 
 let g:ale_fixers = {
+			\ 'cpp': ['clangtidy'],
 			\ 'python': ['black', 'isort'],
 			\ }
 
