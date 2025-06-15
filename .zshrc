@@ -13,7 +13,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   ZSH_THEME="cloud"
-elif [[ $(name) == "Darwin" ]]; then
+elif [[ $(uname) == "Darwin" ]]; then
   ZSH_THEME="apple"
 else
   ZSH_THEME="refined"
