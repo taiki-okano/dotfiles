@@ -11,12 +11,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="refined"
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   ZSH_THEME="cloud"
-# else
-#   ZSH_THEME="refined"
-# fi
-ZSH_THEME="bira"
+if [[ -n $SSH_CONNECTION ]]; then
+  ZSH_THEME="cloud"
+elif [[ $(uname) == "Darwin" ]]; then
+  ZSH_THEME="apple"
+else
+  ZSH_THEME="refined"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,7 +109,7 @@ bindkey '^K' autosuggest-accept
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# export LANG=en_UK.UTF-8
 
 # Vim is the best
 export EDITOR='vim'
@@ -133,3 +134,4 @@ autoload -Uz compinit && compinit
 if [ -e "$HOME/.zshrc_additional" ]; then
 	source "$HOME/.zshrc_additional"
 fi
+
