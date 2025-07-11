@@ -60,9 +60,8 @@ let g:ale_linters = {
 			\ }
 
 let g:ale_fixers = {
-			\ 'cpp': ['clangtidy'],
+			\ 'cpp': ['clang-format'],
 			\ 'python': ['black', 'isort'],
-			\ 'cpp': ['clang-format']
 			\ }
 
 autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
