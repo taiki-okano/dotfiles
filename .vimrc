@@ -14,7 +14,7 @@ filetype on
 filetype plugin indent on
 
 nnoremap <Space>h :nohlsearch<CR>
-nnoremap <Space>n :NERDTreeToggle<CR>
+nnoremap <Space>n :NERDTreeFocus<CR>
 
 "------------------
 " ALE Configuration
@@ -39,6 +39,7 @@ Plug 'dense-analysis/ale'
 Plug 'w0ng/vim-hybrid'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -59,9 +60,11 @@ let g:ale_linters = {
 			\ }
 
 let g:ale_fixers = {
-			\ 'cpp': ['clangtidy'],
+			\ 'cpp': ['clang-format'],
 			\ 'python': ['black', 'isort'],
 			\ }
+
+autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
