@@ -63,5 +63,9 @@ return {
 		"folke/trouble.nvim",
 		opts = {},
 		cmd = "Trouble",
+		keys = {
+			{"<Space>d", "<cmd>Trouble diagnostics focus<CR>", desc = "Trouble diagnostics focus"},
+			{"<Space>s", "<cmd>Trouble symbols focus<CR>", desc = "Trouble symbols focus"},
+		},
 	}
 }
