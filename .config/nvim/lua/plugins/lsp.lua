@@ -1,5 +1,4 @@
 return {
-	{ "neovim/nvim-lspconfig" },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {},
@@ -11,6 +10,32 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			vim.lsp.config('ltex_plus', {
+				settings = {
+					ltex = {
+						language = "en-GB",
+						dictionary = { ["en-GB"] = { "Neovim", "ltex-plus", "nvim", "gantt" } },
+						disabledRules = { ["en-GB"] = { "WHITESPACE_RULE", "OXFORD_SPELLING_Z_NOT_S" } },
+						additionalRules = { enablePickyRules = true },
+					},
+				},
+			})
+
+			vim.lsp.config('lua_ls', {
+				settings = {
+					Lua = {
+						runtime = {
+							version = 'LuaJIT',
+						},
+						diagnostics = {
+							globals = {
+								'vim',
+							},
+						},
+					},
+				},
+			})
+
 			vim.diagnostic.config({
 				virtual_text = {
 					prefix = "●", -- a bullet at the start of each message
