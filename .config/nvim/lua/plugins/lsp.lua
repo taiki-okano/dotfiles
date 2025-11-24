@@ -92,12 +92,8 @@ return {
 		opts = {},
 		cmd = "Trouble",
 		keys = {
-			{
-				"<Space>d", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)"
-			},
-			{
-				"<Space>s", "<cmd>Trouble symbols toggle<cr>", desc = "Symbol(Trouble)"
-			},
+			{"<Space>d", "<cmd>Trouble diagnostics focus<CR>", desc = "Trouble diagnostics focus"},
+			{"<Space>s", "<cmd>Trouble symbols focus<CR>", desc = "Trouble symbols focus"},
 		},
 	}
 }
