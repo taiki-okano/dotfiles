@@ -135,3 +135,13 @@ if [ -e "$HOME/.zshrc_additional" ]; then
 	source "$HOME/.zshrc_additional"
 fi
 
+
+# Created by `pipx` on 2025-08-11 05:44:00
+export PATH="$PATH:/Users/taiki/.local/bin"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# If nvim exists, alias vim to nvim
+if which nvim &> /dev/null;
+then
+	alias vim=nvim;
+fi
