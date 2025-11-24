@@ -1,4 +1,5 @@
 return {
+	{ "neovim/nvim-lspconfig" },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {},
@@ -10,6 +11,23 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			vim.opt.signcolumn = "number"
+
+			vim.diagnostic.config({
+				virtual_text = {
+					prefix = "●", -- a bullet at the start of each message
+					source = "always", -- show which linter / server it came from
+				},
+				severity_sort = true,
+				signs = true, -- enable gutter signs
+				underline = true, -- underline problematic code
+				update_in_insert = false, -- don’t update diagnostics while typing
+				float = {     -- when you do vim.diagnostic.open_float()
+					border = "rounded",
+					source = "always",
+				},
+			})
+
 			vim.lsp.config('ltex_plus', {
 				settings = {
 					ltex = {
@@ -33,21 +51,6 @@ return {
 							},
 						},
 					},
-				},
-			})
-
-			vim.diagnostic.config({
-				virtual_text = {
-					prefix = "●", -- a bullet at the start of each message
-					source = "always", -- show which linter / server it came from
-				},
-				severity_sort = true,
-				signs = true, -- enable gutter signs
-				underline = true, -- underline problematic code
-				update_in_insert = false, -- don’t update diagnostics while typing
-				float = {     -- when you do vim.diagnostic.open_float()
-					border = "rounded",
-					source = "always",
 				},
 			})
 
@@ -88,5 +91,13 @@ return {
 		"folke/trouble.nvim",
 		opts = {},
 		cmd = "Trouble",
+		keys = {
+			{
+				"<Space>d", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)"
+			},
+			{
+				"<Space>s", "<cmd>Trouble symbols toggle<cr>", desc = "Symbol(Trouble)"
+			},
+		},
 	}
 }
