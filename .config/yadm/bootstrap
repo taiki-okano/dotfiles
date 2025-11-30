@@ -37,20 +37,58 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]; then
     git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 fi
 
-# Install Vim-Plug
-if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
 # Install pyenv
 if ! command -v pyenv &> /dev/null; then
 	curl https://pyenv.run | bash
 fi
 
 # Install rbenv
-if ! comman -v rbenv &> /dev/null; then
+if ! command -v rbenv &> /dev/null; then
 	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 	~/.rbenv/bin/rbenv init
+fi
+
+# OS specific
+if [ $(uname -s) == "Linux" ]; then
+	if [ $(uname -m) == "aarch64" ]; then
+		# Linux aarch64
+
+		# Neovim
+		if ! command -v nvim &> /dev/null; then
+			curl -LO https://github.com/neovim/neovim/releases/download/latest/nvim-linux-arm64.tar.gz
+			tar xzf nvim-linux-arm64.tar.gz
+			mkdir -p $HOME/.local/nvim
+			ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
+			mv nvim-linux-arm64/* $HOME/.local/nvim/
+			rm -r nvim-linux-arm64
+		fi
+
+	elif [ $(uname -m) == "x86_64" ]; then
+		# Linux amd64
+		
+		# Neovim
+		if ! command -v nvim &> /dev/null; then
+			curl -LO https://github.com/neovim/neovim/releases/download/latest/nvim-linux-x86_64.tar.gz
+			tar xzf nvim-linux-x86_64.tar.gz
+			mkdir -p $HOME/.local/nvim
+			mv nvim-linux-x86_64/* $HOME/.local/nvim/
+			ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
+			rm -r nvim-linux-x86-64
+		fi
+
+	fi
+
+elif [ $(uname -s) == "Darwin" ]; then
+	# macOS aarch64
+	
+	# Neovim
+	if ! command -v nvim &> /dev/null; then
+		curl -LO https://github.com/neovim/neovim/releases/download/latest/nvim-macos-arm64.tar.gz
+		tar xzf nvim-macos-arm64.tar.gz
+		mkdir -p $HOME/.local/nvim
+		ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
+		mv nvim-macos-arm64/* $HOME/.local/nvim/
+	fi
+
 fi
 
