@@ -38,12 +38,12 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]; then
 fi
 
 # Install pyenv
-if ! command -v pyenv &> /dev/null; then
+if [ ! -d "$HOME/.pyenv" ]; then
 	curl https://pyenv.run | bash
 fi
 
 # Install rbenv
-if ! command -v rbenv &> /dev/null; then
+if [ ! -d "$HOME/.rbenv" ]; then
 	git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 	~/.rbenv/bin/rbenv init
 fi
