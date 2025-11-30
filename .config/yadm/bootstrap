@@ -58,8 +58,8 @@ if [ $(uname -s) == "Linux" ]; then
 			curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.tar.gz
 			tar xzf nvim-linux-arm64.tar.gz
 			mkdir -p $HOME/.local/nvim
-			ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
 			mv nvim-linux-arm64/* $HOME/.local/nvim/
+			ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
 			rm -r nvim-linux-arm64
 		fi
 
@@ -73,7 +73,7 @@ if [ $(uname -s) == "Linux" ]; then
 			mkdir -p $HOME/.local/nvim
 			mv nvim-linux-x86_64/* $HOME/.local/nvim/
 			ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
-			rm -r nvim-linux-x86-64
+			rm -r nvim-linux-x86_64
 		fi
 
 	fi
@@ -86,8 +86,9 @@ elif [ $(uname -s) == "Darwin" ]; then
 		curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz
 		tar xzf nvim-macos-arm64.tar.gz
 		mkdir -p $HOME/.local/nvim
-		ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
 		mv nvim-macos-arm64/* $HOME/.local/nvim/
+		ln -sf $HOME/.local/nvim/bin/nvim $HOME/.local/bin/nvim
+		rm -r nvim-macos-arm64
 	fi
 
 fi
