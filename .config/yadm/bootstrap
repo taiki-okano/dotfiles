@@ -12,11 +12,17 @@ if ! command -v fzf &> /dev/null; then
 	~/.fzf/install
 fi
 
-# Install Ripgrep and bat
+# Install Ripgrep, bat, and fd
 if ! command -v rg &> /dev/null; then
 	curl -sS https://webi.sh/rg | sh
 	[ -f "$HOME/.config/envman/PATH.env" ] && source ~/.config/envman/PATH.env
 fi
+
+if ! command -v fd &> /dev/null; then
+	curl -sS https://webi.sh/fd | sh
+	[ -f "$HOME/.config/envman/PATH.env" ] && source ~/.config/envman/PATH.env
+fi
+
 if ! command -v bat &> /dev/null; then
 	curl -sS https://webi.sh/bat | sh
 	[ -f "$HOME/.config/envman/PATH.env" ] && source ~/.config/envman/PATH.env
