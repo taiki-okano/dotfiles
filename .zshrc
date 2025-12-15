@@ -11,13 +11,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="refined"
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  ZSH_THEME="cloud"
-elif [[ $(uname) == "Darwin" ]]; then
-  ZSH_THEME="apple"
-else
-  ZSH_THEME="refined"
-fi
+ZSH_THEME="juanghurtado"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -145,3 +139,7 @@ if which nvim &> /dev/null;
 then
 	alias vim=nvim;
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
