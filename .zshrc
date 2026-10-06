@@ -105,9 +105,6 @@ bindkey '^K' autosuggest-accept
 # You may need to manually set your language environment
 # export LANG=en_UK.UTF-8
 
-# Vim is the best
-export EDITOR='vim'
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -129,17 +126,20 @@ if [ -e "$HOME/.zshrc_additional" ]; then
 	source "$HOME/.zshrc_additional"
 fi
 
-
-# Created by `pipx` on 2025-08-11 05:44:00
-export PATH="$PATH:/Users/taiki/.local/bin"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
 # If nvim exists, alias vim to nvim
-if which nvim &> /dev/null;
-then
-	alias vim=nvim;
+export PATH="$PATH:$HOME/.local/bin"
+if command -v nvim &>/dev/null; then
+  alias vim='nvim'
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
 fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
